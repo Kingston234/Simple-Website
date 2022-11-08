@@ -1,0 +1,146 @@
+<?php session_start(); ?>
+<html lang="pl">
+<head>
+<?php include 'glowa.php'; ?>
+</head>
+
+<body>
+<?php 
+error_reporting(0);
+if(($_SESSION["email"]==1)&&($_SESSION["haslo"]==1)){
+include 'headerlogin.php'; 
+}
+else{
+	include 'header.php'; 
+}
+?>
+
+<div id="contentMain" class="contentMain">
+<h1 class="glitch">
+<span aria-hidden="true">OTODOM</span>
+OTODOM
+<span aria-hidden="true">OTODOM</span></h1>
+<h2 class="glitchh2" style="padding-left:30%">
+<span aria-hidden="true">Serwis Ogłoszeniowy Aplikacja Webowa</span>
+Serwis Ogłoszeniowy Aplikacja Webowa
+<span aria-hidden="true">Serwis Ogłoszeniowy Aplikacja Webowa</span></h2>
+<article>
+
+<div class="card"><div class="card-content">
+<h2 class="card-title">Szukasz mieszkania?</h2>
+<p class="card-body"> Znajdziesz u nas najlepsze ceny mieszkań</p>
+<a href="ogloszenia.php" target="_blank" class="button">Czytaj więcej</a>
+</div></div>
+		<div class="cardr"><div class="cardr-content">
+<h2 class="cardr-title">Potrzebujesz pożyczki?</h2>
+<p class="cardr-body"> Wejdź już dziś i nie martw się o pieniądze</p>
+<a href="https://www.vivus.pl/61?gclid=CjwKCAiAwKyNBhBfEiwA_mrUMpCI1TrKKpotzNSbM9rXdqynryPvOEl7TwcOexbdCHLUKoQ1iRyFVBoC_ocQAvD_BwE&gclsrc=aw.ds" target="_blank" class="buttonr">Czytaj więcej</a>
+</div></div>
+<div class="otodomContent">
+
+		<form method="POST" class="tekst">
+		<b>Miasto:</b>
+		<select name="miasto">
+		<option value="%">Wszystko</option>
+		<?php
+			$con=mysqli_connect('localhost','root','','otodom');
+			$zap=mysqli_query($con, "select DISTINCT miasto from ogloszenia");
+			while($row=mysqli_fetch_array($zap))
+{
+	echo "<option>$row[0]</option>";
+}
+mysqli_close($con);
+?>
+</select><br>
+<b>Metraż
+OD:</b><input type="number" name="metr_od">   <b>DO:</b><input type="number" name="metr_do">
+		
+	<br><b>Rodzaj budynku</b>
+		<select name="rodzaj">
+		<option value="%">Wszystko</option>
+		<?php
+			$con=mysqli_connect('localhost','root','','otodom');
+			$zap=mysqli_query($con, "select DISTINCT rodzaj from ogloszenia");
+			while($row=mysqli_fetch_array($zap))
+{
+	echo "<option>$row[0]</option>";
+}
+mysqli_close($con);
+?>
+</select>
+<br><b>Cena
+OD:</b><input type="number" name="cena_od">   <b>DO:</b><input type="number" name="cena_do">
+		
+	<br><b>Rodzaj tranzakcji</b>
+		<select name="jaki">
+		<option value="%">Wszystko</option>
+		<?php
+			$con=mysqli_connect('localhost','root','','otodom');
+			$zap=mysqli_query($con, "select DISTINCT jaki from ogloszenia");
+			while($row=mysqli_fetch_array($zap))
+{
+	echo "<option>$row[0]</option>";
+}
+mysqli_close($con);
+?>
+</select>
+<br><b>Sortuj według:</b>
+<select name="sort">
+<option value="id">--wybierz--</option>
+<option value="cena asc">ceny rosnąco</option>
+<option value="cena desc">ceny malejąco</option>
+<option value="metraz asc">metrażu rosnąco</option>
+<option value="metraz desc">metrażu malejąco</option>
+</select><br><br>
+<input type="submit" class="neonowy" value="filtruj"></form><br>
+	<div class="otodomContentRight">
+	<?php
+	$miasto=$_POST['miasto'];
+	$jaki=$_POST['jaki'];
+	$rodzaj=$_POST['rodzaj'];
+	$cena_od=$_POST['cena_od'];
+	$cena_do=$_POST['cena_do'];
+	$metr_od=$_POST['metr_od'];
+	$metr_do=$_POST['metr_do'];
+	$sort=$_POST['sort'];
+	if ($cena_od==null) $cena_od=0;
+	if ($cena_do==null) $cena_do=99999999999999;
+	if ($metr_od==null) $metr_od=0;
+	if ($metr_do==null) $metr_do=99999999999999;
+$con=mysqli_connect('localhost','root','','otodom');
+$zap=mysqli_query($con, "select miasto, metraz, rodzaj, cena, jaki, link, email from ogloszenia");
+$zap2=mysqli_query($con, "select miasto, metraz, rodzaj, cena, jaki, link, email from ogloszenia ORDER BY $sort");
+$zap1=mysqli_query($con, "select miasto, metraz, rodzaj, cena, jaki, link, email from ogloszenia where (miasto like '$miasto') and (metraz between '$metr_od' and '$metr_do') and (rodzaj like '$rodzaj') and (cena between '$cena_od' and '$cena_do') and (jaki like '$jaki') order by $sort");
+echo "<table>";
+echo "<tr><th>MIASTO</th><th>METRAŻ</th><th>RODZAJ BUDYNKU</th><th>CENA</th><th>RODZAJ TRANZAKCJI</th><th>ZDJĘCIE</th><th>KONTAKT Z OGŁOSZENIODAWCĄ</th></tr>";
+if ($miasto==null && $jaki==null && $rodzaj==null && $cena_od=='0' && $cena_do=='99999999999999' && $metr_od=='0' && $metr_do=='99999999999999'){
+while($row=mysqli_fetch_array($zap))
+{
+	echo "<tr><td>".$row['miasto']."</td><td>".$row['metraz']."</td><td>".$row['rodzaj']."</td><td>".$row['cena']."</td><td>".$row['jaki']."</td><td><img src='$row[5]' height='100px' width='100px'></td><td>".$row['email']."</td></tr>";
+}}
+else if ($miasto=='%' && $jaki=='%' && $rodzaj=='%' && $cena_od=='0' && $cena_do=='99999999999999' && $metr_od=='0' && $metr_do=='99999999999999'){
+while($row=mysqli_fetch_array($zap2))
+{
+	echo "<tr><td>".$row['miasto']."</td><td>".$row['metraz']."</td><td>".$row['rodzaj']."</td><td>".$row['cena']."</td><td>".$row['jaki']."</td><td><img src='$row[5]' height='100px' width='100px'></td><td>".$row['email']."</td></tr>";
+}}
+else {
+	while($row=mysqli_fetch_array($zap1))
+{
+	echo "<tr><td>".$row['miasto']."</td><td>".$row['metraz']."</td><td>".$row['rodzaj']."</td><td>".$row['cena']."</td><td>".$row['jaki']."</td><td><img src='$row[5]' height='100px' width='100px'></td><td>".$row['email']."</td></tr>";
+}
+}
+echo "</table>";
+mysqli_close($con);
+
+?>
+	</div>
+	
+	
+	
+</div>
+</article>
+</div>
+
+<?php include 'footer.php'; ?>
+</body>
+</html>

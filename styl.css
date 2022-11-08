@@ -1,0 +1,120 @@
+table{
+	border-collapse:collapse;
+	margin-left: 10em;
+	background-color: hsl(350, 0%, 85%);
+}
+th{
+	border: 1px solid black;
+	text-align:center;
+	background-color:hsl(66, 14%, 80%);
+}
+tr, td{
+	border: 1px solid black;
+	text-align:center;
+	transition: transform 300ms ease;
+}
+tr:hover :not(th){
+	background-color: hsl(177, 100%, 89%);
+	text-align:center;
+	border-radius: 0.25em;
+	transform: scale(1.02);
+}
+html, div, span, a, article, aside, canvas, figure, figcaption, footer, header, nav, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.tekst{
+	text-align:left;
+	margin-left:10%;
+}
+.register{
+	text-align:center;
+	font: Cursive;
+}
+body{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	background-color: hsl(350, 0%, 80%);
+}
+.otodomContentLeft1{
+	float:left;
+	width:20%;
+}
+.otodomContentLeft{
+	float:left;
+		text-align:left;
+	margin-left:10%;
+}
+.otodomContentRight{
+	float:left;
+}
+.otodomContent{
+	padding-left:50px;
+	text-align: center;
+	margin-left:10%;
+}
+footer{
+	clear:both;
+}
+header {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: hsl(350, 0%, 80%);
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index:1;
+	
+}
+header ul li{
+	text-align: center;
+	padding: 14px 16px;	
+}
+header ul {
+	list-style-type: none;
+	margin-left:-7%;
+}
+
+header ul li {
+	float: left;
+}
+h1{
+	padding-left:42%;
+	padding-right:40%;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 10px;
+	padding: 10px;
+}
+
+.grid-container>div {
+	text-align: center;
+	padding: 20px 0;
+	font-size: 30px;
+}
+
+@media screen and (max-width: 768px) {
+		.grid-container {
+		display: grid;
+		grid-template-columns: auto;
+		min-width: 100%;
+		grid-gap: 10px;
+		padding: 2px;
+	}
+		.grid-container>div {
+		text-align: center;
+		padding: 2px 0;
+		font-size: 20px;
+	}
+}

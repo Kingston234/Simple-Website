@@ -1,0 +1,79 @@
+:root {
+  --clr-neutral-900: hsl(207, 19%, 9%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+  --clr-accent-400: hsl(142, 90%, 61%);
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.cardr{
+	color: var(--clr-neutral-100);
+	background-image: url(cardr-bg.jpg);
+	background-size: cover;
+	padding: 10rem 0 0;
+	max-width: 35ch;
+	float:right;
+	margin-right: 30px;
+	text-align: none;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	transition: transform 500ms ease;
+}
+.cardr:hover{
+	transform: scale(1.05);
+}
+.cardr:hover .cardr-content{
+	transform: translateY(0);
+}
+.cardr-content{
+	--padding: 1.5rem;
+	padding: var(--padding);
+	background: linear-gradient(hsl(0 0% 0% / 0),hsl(20 0% 0% / 0.3) 10%, hsl(0 0% 0% / 1));
+	transform: translateY(50%);
+	transition: transform 500ms ease;
+}
+.cardr-title{
+	position:relative;
+	width: max-content;
+}
+.cardr-title::after{
+	content: "";
+	position: absolute;
+	height: 4px;
+	left: calc(var(--padding) * -1);
+	bottom: -2px;
+	width: calc(100% + var(--padding));
+	background: var(--clr-accent-400);
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 500ms ease;
+}
+.cardr-content > *:not(.cardr-title){
+	opacity: 0;
+	transition: opacity 500ms linear;
+}
+.cardr:hover .cardr-content > *:not(.cardr-title){
+	opacity:1;
+}
+.cardr:hover .cardr-title::after{
+	transform: scaleX(1);
+}
+.buttonr{
+	cursor: pointer;
+	display: inline;
+	text-decoration: none;
+	color: var(--clr-neutral-900);
+	background-color: var(--clr-accent-400);
+	padding: 0.5em 1.25em;
+	border-radius: 0.25em;
+}
+.buttonr:hover,
+.buttonr:focus{
+background-color: var(--clr-neutral-100);
+}	
+.cardr-body{
+	color: rgb(255 255 255 / 0.8);
+}
+	

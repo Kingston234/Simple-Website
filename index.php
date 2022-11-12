@@ -27,7 +27,7 @@ var c=alert("Ta strona używa ciasteczek. Wchodząc na nią akceptujesz jej regu
 OTODOM
 <span aria-hidden="true">OTODOM</span></h1>
 <h2 class="glitchh2" style="padding-left:30%">
-<span aria-hidden="true">Serwis Ogłoszeniowy Aplikacja Webowa</span>
+<span aria-hidden="true">Serwis Ogłoszeniowy Aplikacja Internetowa</span>
 Serwis Ogłoszeniowy Aplikacja Webowa
 <span aria-hidden="true">Serwis Ogłoszeniowy Aplikacja Webowa</span></h2>
 

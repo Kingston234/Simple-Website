@@ -76,7 +76,7 @@ Serwis Ogłoszeniowy Aplikacja Webowa
 				<script type="text/javascript">
 				function zmienStrone()
 			{
-				location.replace("http://localhost/projekt/index.php");
+				location.replace("./index.php");
 			}
 			setTimeout("zmienStrone();", 0);</script>
 				<?php

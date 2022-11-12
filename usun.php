@@ -74,7 +74,7 @@ Serwis Ogłoszeniowy Aplikacja Webowa
 			alert ("Pomyślnie usunieto konto");
 			function zmienStrone()
 			{
-				location.replace("http://localhost/projekt/index.php");
+				location.replace("./index.php");
 			}
 			setTimeout("zmienStrone();", 0);</script><?php
 		}

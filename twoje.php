@@ -61,7 +61,7 @@ if ($ide!=NULL){
 	alert("Pomyślnie usunięto");
 	function zmienStrone()
 			{
-				location.replace("http://localhost/projekt/twoje.php");
+				location.replace("./twoje.php");
 			}
 			setTimeout("zmienStrone();", 0);
 </script><?php

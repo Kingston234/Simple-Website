@@ -89,7 +89,7 @@ if($z==1){?>
 			alert ("Dodano ogłoszenie!");
 			function zmienStrone()
 			{
-				location.replace("http://localhost/projekt/ogloszenia.php");
+				location.replace("./ogloszenia.php");
 			}
 			setTimeout("zmienStrone();", 0);
 </script><?php

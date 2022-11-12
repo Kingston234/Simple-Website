@@ -78,7 +78,7 @@ Serwis Ogłoszeniowy Aplikacja Webowa
 			alert ("Poprawnie zalogowano!");
 			function zmienStrone()
 			{
-				location.replace("http://localhost/projekt/ogloszenia.php");
+				location.replace("./ogloszenia.php");
 			}
 			setTimeout("zmienStrone();", 0);
 			</script><?php
